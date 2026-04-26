@@ -1,0 +1,134 @@
+/* ================================================================
+   SymptomCard — Design Tokens
+   Extends Button.css; new tokens only.
+   ================================================================ */
+
+:root {
+  /* Card */
+  --radius-card:              16px;
+  --spacing-2xl:              24px;
+
+  /* Typography — text-lg (card title) */
+  --font-size-text-lg:        18px;
+  --line-height-text-lg:      28px;
+
+  /* Typography — label (CHECK-IN) */
+  --font-size-label:          11px;
+  --letter-spacing-label:     0.07em;
+
+  /* Colors */
+  --colors-text-text-primary:   #1a2733;
+  --colors-border-border-card:  #dde4e8;
+  --colors-brand-green:         #7a9e8e;
+}
+
+/* ================================================================
+   Page wrapper — centers card on the page
+   ================================================================ */
+
+.symptom-card-page {
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+  min-height:       100svh;
+  padding:          var(--spacing-2xl);
+  box-sizing:       border-box;
+}
+
+/* ================================================================
+   Card
+   ================================================================ */
+
+.symptom-card {
+  background-color: var(--colors-background-bg-white);
+  border:           1px solid var(--colors-border-border-card);
+  border-radius:    var(--radius-card);
+  padding:          var(--spacing-2xl);
+  max-width:        400px;
+  width:            100%;
+  box-sizing:       border-box;
+  display:          flex;
+  flex-direction:   column;
+  gap:              var(--spacing-xl);
+  box-shadow:
+    0 1px 2px var(--colors-effects-shadows-shadow-xs),
+    0 4px 12px var(--colors-effects-shadows-shadow-xs);
+}
+
+/* ================================================================
+   Header — CHECK-IN label row
+   ================================================================ */
+
+.symptom-card__header {
+  display:     inline-flex;
+  align-items: center;
+  gap:         var(--spacing-xs);
+}
+
+.symptom-card__header-icon {
+  flex-shrink: 0;
+  color:       var(--colors-brand-green);
+}
+
+.symptom-card__label {
+  font-family:    'DM Sans', sans-serif;
+  font-size:      var(--font-size-label);
+  font-weight:    600;
+  line-height:    1;
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color:          var(--colors-text-text-secondary-700);
+}
+
+/* ================================================================
+   Body copy — title + subtitle share tighter spacing
+   ================================================================ */
+
+.symptom-card__body {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--spacing-md);
+}
+
+.symptom-card__title {
+  margin:      0;
+  font-family: 'DM Sans', sans-serif;
+  font-size:   var(--font-size-text-lg);
+  font-weight: 700;
+  line-height: var(--line-height-text-lg);
+  color:       var(--colors-text-text-primary);
+}
+
+.symptom-card__subtitle {
+  margin:      0;
+  font-family: 'DM Sans', sans-serif;
+  font-size:   var(--font-size-text-sm);
+  font-weight: 400;
+  line-height: var(--line-height-text-sm);
+  color:       var(--colors-text-text-secondary-700);
+}
+
+/* ================================================================
+   Pill group
+   ================================================================ */
+
+.symptom-card__pills {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       var(--spacing-md);
+}
+
+/* ================================================================
+   Footer — Continue + Skip
+   ================================================================ */
+
+.symptom-card__footer {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            var(--spacing-md);
+}
+
+.symptom-card__continue {
+  width: 100%;
+}
