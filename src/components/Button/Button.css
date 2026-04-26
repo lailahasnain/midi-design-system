@@ -1,0 +1,344 @@
+/* ================================================================
+   Button — Design Tokens (exact Figma token names)
+
+   Token paths use "/" as the Figma hierarchy separator.
+   Exception: --colors-text-text-secondary-(700) is declared as
+   --colors-text-text-secondary-700 (parens stripped for CSS
+   parsing compatibility; original Figma name noted in comment).
+   ================================================================ */
+
+:root {
+  /* Spacing */
+  --spacing-xxs: 2px;
+  --spacing-xs:  4px;
+  --spacing-sm:  6px;
+  --spacing-md:  8px;
+  --spacing-lg:  12px;
+  --spacing-xl:  16px;
+
+  /* Typography — text-sm (sm / md button sizes) */
+  --font-size-text-sm:   14px;
+  --line-height-text-sm: 20px;
+
+  /* Typography — text-md (lg / xl button sizes) */
+  --font-size-text-md:   16px;
+  --line-height-text-md: 24px;
+
+  /* Border radius */
+  --radius-sm: 6px;
+
+  /* Colors — Brand */
+  --colors-brand-primary-400:   #579fff; /* default */
+  --colors-brand-primaryt-200:  #88b8fb; /* hover   */
+  --colors-brand-primary-600:   #006af9; /* focused */
+
+  /* Colors — Text */
+  --colors-text-text-white:          #ffffff;
+  --colors-text-text-secondary-700:  #6b7c88; /* Figma: text-secondary-(700) */
+  --colors-text-text-secondary_hover: #415465;
+
+  /* Colors — Foreground */
+  --colors-foreground-fg-disabled: #bdc8cc;
+
+  /* Colors — Background */
+  --colors-background-bg-disabled:      #eef5f7;
+  --colors-background-bg-primary-hover: #e7f0f3;
+
+  /* Colors — Border */
+  --colors-border-border-primary:          #8998a1;
+  --colors-border-border-disabled_subtle:  #eef5f7;
+
+  /* Colors — Base scale */
+  --colors-base-15:  #eef5f7;
+  --colors-base-200: #a9b5ba;
+
+  /* Component colors */
+  --component-colors-utility-brand-utility-brand-100: #bdc8cc;
+
+  /* Effects — Shadows */
+  --colors-effects-shadows-shadow-xs:                    rgba(10, 13, 18, 0.05);
+  --colors-effects-shadows-shadow-skeumorphic-inner-border: rgba(10, 13, 18, 0.18);
+  --colors-effects-shadows-shadow-skeumorphic-inner:     rgba(10, 13, 18, 0.05);
+
+  /* Effects — Focus rings */
+  --colors-effects-focus-rings-focus-ring: #b6e7a0;
+}
+
+/* ================================================================
+   Base Button
+   ================================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  white-space: nowrap;
+  position: relative;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    color            0.15s ease,
+    box-shadow       0.15s ease,
+    border-color     0.15s ease;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--colors-effects-focus-rings-focus-ring);
+}
+
+.btn:disabled,
+.btn--loading {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ================================================================
+   Size Variants
+   Heights: sm=36 · md=40 · lg=44 · xl=48
+   ================================================================ */
+
+.btn--sm {
+  padding:     var(--spacing-md) var(--spacing-lg); /* 8px 12px */
+  font-size:   var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+}
+
+.btn--md {
+  padding:     10px 14px;
+  font-size:   var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+}
+
+.btn--lg {
+  padding:     10px var(--spacing-xl); /* 10px 16px */
+  gap:         var(--spacing-sm);
+  font-size:   var(--font-size-text-md);
+  line-height: var(--line-height-text-md);
+}
+
+.btn--xl {
+  padding:     12px 18px;
+  gap:         var(--spacing-sm);
+  font-size:   var(--font-size-text-md);
+  line-height: var(--line-height-text-md);
+}
+
+/* Icon-only: square padding matches the text-variant height */
+.btn--icon-only.btn--sm { padding: var(--spacing-md); }
+.btn--icon-only.btn--md { padding: 10px; }
+.btn--icon-only.btn--lg { padding: 12px; }
+.btn--icon-only.btn--xl { padding: 14px; }
+
+/* ================================================================
+   Inner Slots
+   ================================================================ */
+
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.btn__label {
+  padding: 0 var(--spacing-xxs);
+}
+
+/* ================================================================
+   Loading Spinner
+   ================================================================ */
+
+.btn__spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: btn-spin 0.6s linear infinite;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ================================================================
+   Primary
+   ================================================================ */
+
+.btn--primary {
+  background-color: var(--colors-brand-primary-400);
+  color: var(--colors-text-text-white);
+  box-shadow:
+    0 1px 2px 0 var(--colors-effects-shadows-shadow-xs),
+    inset 0  0  0 1px var(--colors-effects-shadows-shadow-skeumorphic-inner-border),
+    inset 0 -2px 0 0  var(--colors-effects-shadows-shadow-skeumorphic-inner);
+}
+
+.btn--primary:hover {
+  background-color: var(--colors-brand-primaryt-200);
+}
+
+.btn--primary:focus-visible {
+  background-color: var(--colors-brand-primary-600);
+  outline: none;
+  box-shadow:
+    0 1px 2px 0 var(--colors-effects-shadows-shadow-xs),
+    0 0 0 2px   var(--colors-effects-focus-rings-focus-ring),
+    inset 0  0  0 1px var(--colors-effects-shadows-shadow-skeumorphic-inner-border),
+    inset 0 -2px 0 0  var(--colors-effects-shadows-shadow-skeumorphic-inner);
+}
+
+.btn--primary:disabled {
+  background-color: var(--colors-background-bg-disabled);
+  color: var(--colors-foreground-fg-disabled);
+  border: 1px solid var(--colors-border-border-disabled_subtle);
+  box-shadow: 0 1px 2px 0 var(--colors-effects-shadows-shadow-xs);
+}
+
+/* ================================================================
+   Secondary
+   ================================================================ */
+
+.btn--secondary {
+  background-color: #ffffff;
+  color: var(--colors-text-text-secondary-700);
+  border: 1px solid var(--colors-border-border-primary);
+  box-shadow:
+    0 1px 2px 0 var(--colors-effects-shadows-shadow-xs),
+    inset 0  0  0 1px var(--colors-effects-shadows-shadow-skeumorphic-inner-border),
+    inset 0 -2px 0 0  var(--colors-effects-shadows-shadow-skeumorphic-inner);
+}
+
+.btn--secondary:hover {
+  background-color: var(--colors-background-bg-primary-hover);
+  color: var(--colors-text-text-secondary_hover);
+}
+
+.btn--secondary:focus-visible {
+  outline: none;
+  box-shadow:
+    0 1px 2px 0 var(--colors-effects-shadows-shadow-xs),
+    0 0 0 2px   var(--colors-effects-focus-rings-focus-ring),
+    inset 0  0  0 1px var(--colors-effects-shadows-shadow-skeumorphic-inner-border),
+    inset 0 -2px 0 0  var(--colors-effects-shadows-shadow-skeumorphic-inner);
+}
+
+.btn--secondary:disabled {
+  background-color: var(--colors-background-bg-disabled);
+  color: var(--colors-foreground-fg-disabled);
+  border-color: var(--colors-border-border-disabled_subtle);
+  box-shadow: 0 1px 2px 0 var(--colors-effects-shadows-shadow-xs);
+}
+
+/* ================================================================
+   Tertiary
+   ================================================================ */
+
+.btn--tertiary {
+  background-color: transparent;
+  color: var(--colors-text-text-secondary-700);
+}
+
+.btn--tertiary:hover {
+  background-color: var(--colors-background-bg-primary-hover);
+  color: var(--colors-text-text-secondary_hover);
+}
+
+.btn--tertiary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--colors-effects-focus-rings-focus-ring);
+}
+
+.btn--tertiary:disabled {
+  background-color: transparent;
+  color: var(--colors-foreground-fg-disabled);
+}
+
+/* ================================================================
+   Secondary On Brand
+   ================================================================ */
+
+.btn--secondary-on-brand {
+  background-color: var(--colors-base-15);
+  color: var(--component-colors-utility-brand-utility-brand-100);
+  border: 1px solid var(--colors-base-200);
+  box-shadow:
+    0 1px 2px 0 var(--colors-effects-shadows-shadow-xs),
+    inset 0  0  0 1px var(--colors-effects-shadows-shadow-skeumorphic-inner-border),
+    inset 0 -2px 0 0  var(--colors-effects-shadows-shadow-skeumorphic-inner);
+}
+
+.btn--secondary-on-brand:hover {
+  background-color: var(--colors-background-bg-primary-hover);
+}
+
+.btn--secondary-on-brand:focus-visible {
+  outline: none;
+  box-shadow:
+    0 1px 2px 0 var(--colors-effects-shadows-shadow-xs),
+    0 0 0 2px   var(--colors-effects-focus-rings-focus-ring),
+    inset 0  0  0 1px var(--colors-effects-shadows-shadow-skeumorphic-inner-border),
+    inset 0 -2px 0 0  var(--colors-effects-shadows-shadow-skeumorphic-inner);
+}
+
+.btn--secondary-on-brand:disabled {
+  background-color: var(--colors-background-bg-disabled);
+  color: var(--colors-foreground-fg-disabled);
+  border-color: var(--colors-border-border-disabled_subtle);
+  box-shadow: 0 1px 2px 0 var(--colors-effects-shadows-shadow-xs);
+}
+
+/* ================================================================
+   Link Color
+   Link Gray
+   Both are inline/borderless; padding is overridden to 0.
+   Link color and link gray share default token values in Figma;
+   differentiate them at the theme level via the token overrides.
+   ================================================================ */
+
+.btn--link-color,
+.btn--link-gray {
+  background-color: transparent;
+  color: var(--colors-text-text-secondary-700);
+  padding: 0;
+  box-shadow: none;
+}
+
+.btn--link-color.btn--sm,
+.btn--link-color.btn--md,
+.btn--link-color.btn--lg,
+.btn--link-color.btn--xl,
+.btn--link-gray.btn--sm,
+.btn--link-gray.btn--md,
+.btn--link-gray.btn--lg,
+.btn--link-gray.btn--xl {
+  padding: 0;
+}
+
+.btn--link-color:hover,
+.btn--link-gray:hover {
+  color: var(--colors-text-text-secondary_hover);
+}
+
+.btn--link-color:focus-visible,
+.btn--link-gray:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--colors-effects-focus-rings-focus-ring);
+  border-radius: var(--radius-sm);
+}
+
+.btn--link-color:disabled,
+.btn--link-gray:disabled {
+  color: var(--colors-foreground-fg-disabled);
+}
