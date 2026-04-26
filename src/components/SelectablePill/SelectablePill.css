@@ -1,0 +1,90 @@
+/* ================================================================
+   SelectablePill — Design Tokens
+   Extends Button.css; new tokens only — no values from Button.css
+   are redeclared here.
+   ================================================================ */
+
+:root {
+  --colors-background-bg-white:              #ffffff;
+  --colors-background-bg-pill-hover:         #f5f7f9;
+  --colors-background-bg-pill-selected:      #e8f2ff;
+  --colors-effects-focus-rings-focus-ring-brand: rgba(87, 159, 255, 0.22);
+  --selectable-pill-padding-x:               17px;
+}
+
+/* ================================================================
+   Base
+   ================================================================ */
+
+.selectable-pill {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             var(--spacing-sm);                      /* 6px */
+  height:          36px;
+  padding:         var(--spacing-md) var(--selectable-pill-padding-x); /* 8px 17px */
+  background-color: var(--colors-background-bg-white);
+  color:           var(--colors-text-text-secondary-700);
+  border:          1px solid var(--colors-border-border-primary);
+  border-radius:   9999px;
+  cursor:          pointer;
+  font-family:     'DM Sans', sans-serif;
+  font-weight:     500;
+  font-size:       var(--font-size-text-sm);
+  line-height:     var(--line-height-text-sm);
+  white-space:     nowrap;
+  box-shadow:      0 1px 1px var(--colors-effects-shadows-shadow-xs);
+  transition:
+    background-color 0.15s ease,
+    border-color     0.15s ease,
+    box-shadow       0.15s ease;
+}
+
+/* ================================================================
+   Hover
+   ================================================================ */
+
+.selectable-pill:hover {
+  background-color: var(--colors-background-bg-pill-hover);
+  border-color:     var(--colors-brand-primary-400);
+}
+
+/* ================================================================
+   Selected
+   ================================================================ */
+
+.selectable-pill--selected {
+  background-color: var(--colors-brand-primary-400);
+  border-color:     var(--colors-brand-primary-400);
+  color:            var(--colors-text-text-white);
+  box-shadow:
+    0 1px 2px var(--colors-effects-shadows-shadow-xs),
+    inset 0 0 0 1px var(--colors-brand-primary-400);
+}
+
+.selectable-pill--selected:hover {
+  background-color: var(--colors-brand-primary-600);
+  border-color:     var(--colors-brand-primary-600);
+  color:            var(--colors-text-text-white);
+}
+
+/* ================================================================
+   Focus
+   ================================================================ */
+
+.selectable-pill:focus-visible {
+  outline:      none;
+  border-color: var(--colors-brand-primary-400);
+  box-shadow:
+    0 1px 2px var(--colors-effects-shadows-shadow-xs),
+    0 0 0 4px var(--colors-effects-focus-rings-focus-ring-brand);
+}
+
+/* ================================================================
+   Check icon
+   ================================================================ */
+
+.selectable-pill__check {
+  flex-shrink: 0;
+  /* inherits color from the pill — white when selected */
+}
