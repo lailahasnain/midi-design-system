@@ -31,6 +31,7 @@ export default function SelectablePill({ label, selected = false, onChange }) {
       aria-pressed={selected}
       onClick={handleClick}
     >
+      {selected && <CheckIcon />}
       <span className="selectable-pill__label">{label}</span>
     </button>
   );
